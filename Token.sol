@@ -11,6 +11,7 @@ contract Token {
     function consume() public {
         require(balances[msg.sender] > 0);
         balances[msg.sender] -= 1;
+        assert(balances[msg.sender] >= 0);
     }
 
     function backdoor() public {
