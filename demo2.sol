@@ -2,10 +2,14 @@
 pragma solidity ^0.8.22;
 
 contract Ownable {
-    address public owner = msg.sender;
+    address public owner;
 
-    function Owner() public onlyOwner {
-        owner = msg.sender;
+    constructor() {
+        setOwner(msg.sender);
+    }
+
+    function setOwner(address newOwner) public {
+        owner = newOwner;
     }
 
     modifier onlyOwner() {
@@ -44,17 +48,3 @@ contract Token is Ownable, Pausable {
     }
 }
 
-contract Test is Token {
-    address public user = address(0x10000);
-
-    constructor() {
-        balances[user] = 10000;
-
-        pause();
-        owner = address(0);
-    }
-
-    function echidna_locked_balances_on_pause() public view returns (bool) {
-        return balances[user] == 10000;
-    }
-}

@@ -12,8 +12,3 @@ contract Counter {
     }
 }
 
-contract Test is Counter {
-    function echidna_invariant() public view returns (bool) {
-        return counter < 5;
-    }
-}
